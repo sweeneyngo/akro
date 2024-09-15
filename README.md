@@ -17,6 +17,8 @@ Implemented with the [Markov chain generator](https://en.wikipedia.org/wiki/Mark
 ## Building
 Not necessarily in active development, but we welcome any contributions. Feel free to submit an issue or contribute code via PR to the `main` branch.
 
+You need [Go 1.20](https://go.dev/) and [Docker](https://www.docker.com/) to work on the backend and [Node.js v22](https://nodejs.org/en/) for the frontend.
+
 To build the site for development:
 ```bash
 # If you don't have Node v22 or pnpm v9:
@@ -30,6 +32,23 @@ pnpm install && pnpm run dev
 
 You should now access the webpage at `http://localhost:5173/akro/`,
 Any changes in `src` will be immediately available through [Vite](https://vitejs.dev/).
+
+To run the server:
+```bash
+go run .
+```
+The server listens for web requests on port 8080. 
+
+To build the server via Docker:
+```bash
+docker build -t akro/v1 .
+docker run -it akro/v1
+```
+
+### Deployment
+```bash
+fly deploy
+```
 
 ## License
 
