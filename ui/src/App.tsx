@@ -106,17 +106,14 @@ function App() {
 
   const handleSubmit = async () => {
 
-    const startTime = performance.now();
-
     try {
-      const response = await fetch(`http://localhost:8080/generate?minLength=1&maxLength=${maxLength}&noiseLevel=${noise}`)
+      const startTime = performance.now();
+      const response = await fetch(`https://akro.fly.dev/generate?minLength=1&maxLength=${maxLength}&noiseLevel=${noise}`)
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
       const endTime = performance.now();
-      console.log(endTime - startTime);
-      console.log(sentence.split(" "))
       setDuration(endTime - startTime);
       setSentence(capitalizeFirstWord(data.sentence));
       setPassword(data.password);

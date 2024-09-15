@@ -72,3 +72,8 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
+        with:
+          baseDir: "./ui/dist" # Ensure this matches your build output directory
+
+      - name: List build output
+        run: ls -R ./ui/dist
