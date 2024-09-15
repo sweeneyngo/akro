@@ -5,7 +5,7 @@ Create passwords with "slightly coherent" sentences. Ideal for those who have tr
 
 <p align="center">
 <a href="https://ifuxyl.dev/akro">
-<img src="https://i.imgur.com/NmfgmzP.png" width="800"><br>
+<img src="https://i.imgur.com/Jf5Fueu.png" width="800"><br>
 <sup><strong>ifuxyl.dev/akro</a></strong></sup>
 </p>
 
