@@ -10,7 +10,7 @@ Create passwords with "slightly coherent" sentences. Ideal for those who have tr
 </p>
 
 The application is written in Typescript + [React](https://react.dev/) and built with [Vite](https://vitejs.dev/).
-Implemented with the [Markov chain generator](https://en.wikipedia.org/wiki/Markov_chain) with Go.
+Implemented with the [Markov chain generator](https://en.wikipedia.org/wiki/Markov_chain) with Go. Multiple independent replicas are hosted + provisioned in different distributed locations in U.S.A with [Fly](https://fly.io/).
 
 <!-- See the [full article](https://www.ifuxyl.dev/blog/conway-hashlife) about seagull & HashLife! -->
 
