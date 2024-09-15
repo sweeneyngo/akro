@@ -132,7 +132,7 @@ function App() {
       </div>
       <div className="title">
         <h1>akro</h1>
-        <p>Create passwords with "slightly coherent" sentences. <br /> Built with <a href="https://simple.wikipedia.org/wiki/Markov_chain">Markov chains</a>, see the <a href="">details</a> + <a href="">code</a>.</p>
+        <p>Create passwords with "slightly coherent" sentences. <br /> Built with <a href="https://simple.wikipedia.org/wiki/Markov_chain">Markov chains</a>, see the <a href="https://github.com/sweeneyngo/akro">details</a> + <a href="https://github.com/sweeneyngo/akro">code</a>.</p>
       </div>
       {duration > 0 && <div className="time">
         <p>Returned {sentence.split(" ").filter(word => word.length > 0).length} word(s) in {duration.toFixed(2)}ms</p>
@@ -155,6 +155,7 @@ function App() {
         <div className="slider-container">
           <input
             type="range"
+            aria-label="Range"
             min={1}
             max={20}
             step={1}
@@ -167,6 +168,7 @@ function App() {
         <div className="slider-container">
           <input
             type="range"
+            aria-label="Noise"
             min={0}
             max={20}
             step={1}
@@ -177,7 +179,7 @@ function App() {
           <div className="slider-value"><p>Noise • {noise}</p></div>
         </div>
         <div className="button-container">
-          <button onClick={() => handleSubmit()}>
+          <button id="submitButton" aria-label="Submit Button" onClick={() => handleSubmit()}>
             <div className="center">
               <IoSend />
             </div>
