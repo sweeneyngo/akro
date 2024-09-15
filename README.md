@@ -3,11 +3,11 @@
 
 Create passwords with "slightly coherent" sentences. Ideal for those who have trouble remembering passwords!
 
-<!-- <p align="center">
+<p align="center">
 <a href="https://ifuxyl.dev/">
-<img src="https://i.imgur.com/isjQn9z.png" width="800"><br>
-<sup><strong>ifuxyl.dev/seagull</a></strong></sup>
-</p> -->
+<img src="https://i.imgur.com/NmfgmzP.png" width="800"><br>
+<sup><strong>ifuxyl.dev/akro</a></strong></sup>
+</p>
 
 The application is written in Typescript + [React](https://react.dev/) and built with [Vite](https://vitejs.dev/).
 Implemented with the [Markov chain generator](https://en.wikipedia.org/wiki/Markov_chain) with Go.
