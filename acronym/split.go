@@ -49,7 +49,7 @@ func splitTextIntoSentences(text string) []string {
 	re := regexp.MustCompile(`[.!?]`)
 
 	rawSentences := re.Split(text, -1)
-	removePunct := regexp.MustCompile(`[":,\-;“”‘’()_+=*½°™—\d&]`)
+	removePunct := regexp.MustCompile(`[":,\-;“”‘’(){}[\]_+=*½°™—\d&]`)
 	removePatternsRe := regexp.MustCompile(`\[\d+\]`) // Remove patterns like [1], [2], [3]
 
 	var sentences []string

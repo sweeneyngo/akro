@@ -6,13 +6,14 @@ import (
 	"math/rand"
 	"os"
 	"strings"
+	"unicode"
 )
 
 const CHAIN_LAST_VALUE = "<EOL>"
 
 type MarkovChain struct {
 	Transitions map[string][]string `json:"transitions"`
-	StartWords  map[string]bool     `json:"startWords"`
+	StartWords  []string            `json:"startWords"`
 }
 
 func CreateMarkovChain() *MarkovChain {
@@ -20,7 +21,7 @@ func CreateMarkovChain() *MarkovChain {
 	// Initialize a new Markov Chain, return address
 	return &MarkovChain{
 		Transitions: make(map[string][]string),
-		StartWords:  make(map[string]bool),
+		StartWords:  make([]string, 0),
 	}
 }
 
@@ -32,30 +33,40 @@ func (markovChain *MarkovChain) AddCorpus(sentences []string) {
 
 }
 
+// func (markovChain *MarkovChain) addStartWords() {
+// 	markovChain.memStartWords = make([]string, 0, len(markovChain.StartWords))
+// 	for word := range markovChain.StartWords {
+// 		markovChain.memStartWords = append(markovChain.memStartWords, word)
+// 	}
+// }
+
 // MarkovChain.GenerateSentence(startWord string, length int) -> string
 func (markovChain *MarkovChain) GenerateSentence(minLength int, maxLength int) string {
-	var sentence []string
+	sentence := make([]string, 0, maxLength)
 	currentWord := markovChain.getRandomStartWord()
 	wordCount := 0
 
 	for i := 0; i < maxLength; i++ {
 
-		if currentWord != CHAIN_LAST_VALUE {
-			sentence = append(sentence, currentWord)
-			wordCount += 1
+		if currentWord == CHAIN_LAST_VALUE {
+			break
 		}
+
+		sentence = append(sentence, currentWord)
+		wordCount += 1
 
 		// Pick new random next word
 		nextSentence, ok := markovChain.Transitions[currentWord]
-		if !ok || len(nextSentence) == 0 {
-			return strings.Join(sentence, " ")
+		length := len(nextSentence)
+		if !ok || length == 0 {
+			break
 		}
 
-		currentWord = nextSentence[rand.Intn(len(nextSentence))]
+		currentWord = nextSentence[rand.Intn(length)]
 
 		// Check if current word is EOL
 		if currentWord == CHAIN_LAST_VALUE && wordCount >= minLength {
-			return strings.Join(sentence, " ")
+			break
 		}
 	}
 
@@ -88,6 +99,7 @@ func LoadFromFile(filename string) (*MarkovChain, error) {
 	if err != nil {
 		return nil, fmt.Errorf("error unmarshalling Markov Chain: %w", err)
 	}
+
 	return &markovChain, nil
 }
 
@@ -99,7 +111,9 @@ func (markovChain *MarkovChain) addSentence(sentence string) {
 	if length > 0 {
 		// Set start word as candidate start words
 		startWord := words[0]
-		markovChain.StartWords[startWord] = true
+		if unicode.IsUpper(rune(startWord[0])) && !contains(markovChain.StartWords, startWord) {
+			markovChain.StartWords = append(markovChain.StartWords, startWord)
+		}
 	}
 
 	for index := 0; index < length-1; index++ {
@@ -122,14 +136,19 @@ func (markovChain *MarkovChain) addSentence(sentence string) {
 
 func (markovChain *MarkovChain) getRandomStartWord() string {
 
-	var startWords []string
-	for word := range markovChain.StartWords {
-		startWords = append(startWords, word)
-	}
-
-	if len(startWords) == 0 {
+	length := len(markovChain.StartWords)
+	if length == 0 {
 		return ""
 	}
+	index := rand.Intn(length)
+	return markovChain.StartWords[index]
+}
 
-	return startWords[rand.Intn(len(startWords))]
+func contains(slice []string, word string) bool {
+	for _, w := range slice {
+		if w == word {
+			return true
+		}
+	}
+	return false
 }

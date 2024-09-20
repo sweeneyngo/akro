@@ -109,7 +109,6 @@ func generateModel() {
 
 	mc := acronym.CreateMarkovChain()
 	mc.AddCorpus(corpus)
-
 	mc.SaveToFile("model.json")
 }
 
