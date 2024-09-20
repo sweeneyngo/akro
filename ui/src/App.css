@@ -36,6 +36,16 @@
   margin-bottom: 0.5rem;
 }
 
+.time-yellow {
+  border: 1px solid rgb(170, 163, 60);
+  background-color: rgb(54, 51, 40);
+}
+
+.time-red {
+  border: 1px solid rgb(170, 73, 60);
+  background-color: rgb(54, 40, 40);
+}
+
 .time p {
   margin: 0;
   padding: 0 0rem;

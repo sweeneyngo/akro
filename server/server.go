@@ -27,6 +27,9 @@ func Run(port string) {
 
 	router := http.NewServeMux()
 	router.HandleFunc("/generate", handleRequest(mc))
+	router.HandleFunc("/ping", func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusOK)
+	})
 
 	cors := applyCORS(router)
 

@@ -10,13 +10,12 @@ type ColorMapping = {
 
 function App() {
 
-  const [duration, setDuration] = useState(0);
+  const [duration, setDuration] = useState(-1);
   const [maxLength, setMaxLength] = useState(8);
   const [noise, setNoise] = useState(0);
   const [sentence, setSentence] = useState("");
   const [password, setPassword] = useState("");
   const [isVisible, setIsVisible] = useState(false);
-
 
   const getRandomColor = () => {
     // Generate a random hex color with maximum brightness
@@ -134,7 +133,7 @@ function App() {
         <h1>akro</h1>
         <p>Create passwords with "slightly coherent" sentences. <br /> Built with <a href="https://simple.wikipedia.org/wiki/Markov_chain">Markov chains</a>, see the <a href="https://github.com/sweeneyngo/akro">details</a> + <a href="https://github.com/sweeneyngo/akro">code</a>.</p>
       </div>
-      {duration > 0 && <div className="time">
+      {duration >= 0 && <div className={`time ${duration >= 100 ? "time-red" : duration >= 48 && "time-yellow"}`}>
         <p>Returned {sentence.split(" ").filter(word => word.length > 0).length} word(s) in {duration.toFixed(2)}ms</p>
       </div>}
       <div className="sentence">
