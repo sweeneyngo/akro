@@ -3,19 +3,21 @@
 
 Create passwords with "slightly coherent" sentences. Ideal for those who have trouble remembering passwords!
 
-<!-- <p align="center">
-<a href="https://ifuxyl.dev/">
-<img src="https://i.imgur.com/isjQn9z.png" width="800"><br>
-<sup><strong>ifuxyl.dev/seagull</a></strong></sup>
-</p> -->
+<p align="center">
+<a href="https://ifuxyl.dev/akro">
+<img src="https://i.imgur.com/Jf5Fueu.png" width="800"><br>
+<sup><strong>ifuxyl.dev/akro</a></strong></sup>
+</p>
 
 The application is written in Typescript + [React](https://react.dev/) and built with [Vite](https://vitejs.dev/).
-Implemented with the [Markov chain generator](https://en.wikipedia.org/wiki/Markov_chain) with Go.
+Implemented with the [Markov chain generator](https://en.wikipedia.org/wiki/Markov_chain) with Go. Multiple independent replicas are hosted + provisioned in different distributed locations in U.S.A with [Fly](https://fly.io/).
 
 <!-- See the [full article](https://www.ifuxyl.dev/blog/conway-hashlife) about seagull & HashLife! -->
 
 ## Building
 Not necessarily in active development, but we welcome any contributions. Feel free to submit an issue or contribute code via PR to the `main` branch.
+
+You need [Go 1.20](https://go.dev/) and [Docker](https://www.docker.com/) to work on the backend and [Node.js v22](https://nodejs.org/en/) for the frontend.
 
 To build the site for development:
 ```bash
@@ -30,6 +32,23 @@ pnpm install && pnpm run dev
 
 You should now access the webpage at `http://localhost:5173/akro/`,
 Any changes in `src` will be immediately available through [Vite](https://vitejs.dev/).
+
+To run the server:
+```bash
+go run .
+```
+The server listens for web requests on port 8080. 
+
+To build the server via Docker:
+```bash
+docker build -t akro/v1 .
+docker run -it akro/v1
+```
+
+### Deployment
+```bash
+fly deploy
+```
 
 ## License
 
