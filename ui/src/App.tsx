@@ -131,7 +131,7 @@ function App() {
       </div>
       <div className="title">
         <h1>akro</h1>
-        <p>Create passwords with "slightly coherent" sentences. <br /> Built with <a href="https://simple.wikipedia.org/wiki/Markov_chain">Markov chains</a>, see the <a href="https://github.com/sweeneyngo/akro">details</a> + <a href="https://github.com/sweeneyngo/akro">code</a>.</p>
+        <p>Create passwords with "slightly coherent" sentences. <br /> Built with <a href="https://simple.wikipedia.org/wiki/Markov_chain">Markov chains</a>, see the <a href="https://github.com/sweeneyngo/akro">details</a> + <a href="https://github.com/sweeneyngo/akro">code</a><br/>Need to check your password health? Visit <a href="https://ifuxyl.dev/pash/">pash</a>!</p>
       </div>
       {duration >= 0 && <div className={`time ${duration >= 100 ? "time-red" : duration >= 48 && "time-yellow"}`}>
         <p>Returned {sentence.split(" ").filter(word => word.length > 0).length} word(s) in {duration.toFixed(2)}ms</p>
